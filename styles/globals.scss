@@ -1,0 +1,47 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body,
+#root {
+	width: 100%;
+	min-height: 100%;
+}
+
+html {
+	line-height: 1.3rem;
+	overflow-x: hidden;
+	letter-spacing: 0.05rem;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+	tab-size: 2;
+	font-weight: 375;
+	letter-spacing: -0.005em;
+	scroll-behavior: smooth;
+}
+
+body {
+	@apply bg-white;
+}
+
+a {
+	appearance: none;
+	text-decoration: none;
+	outline: none;
+}
+
+input,
+button {
+	outline: none;
+	appearance: none;
+}
