@@ -1,0 +1,16 @@
+.body_container {
+	@apply flex flex-col gap-2 px-2 py-3 text-gray-300;
+
+	.input_container {
+		@apply flex flex-col gap-2;
+		> h3 {
+			@apply font-semibold;
+		}
+	}
+	.select_container {
+		@apply flex items-center gap-1 font-semibold;
+	}
+	.button_container {
+		@apply mx-auto mt-2;
+	}
+}

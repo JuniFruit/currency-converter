@@ -1,0 +1,12 @@
+.main {
+	@apply rounded-md bg-sky-300  p-2 text-sm text-gray-800 transition-colors duration-150;
+	@media (hover: hover) {
+		&:hover {
+			@apply bg-sky-400;
+		}
+	}
+
+	@screen md {
+		@apply rounded-md py-1.5 px-2 text-sm font-bold;
+	}
+}

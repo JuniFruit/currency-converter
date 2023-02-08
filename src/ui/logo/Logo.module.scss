@@ -1,0 +1,7 @@
+.wrapper {
+	@apply flex items-center gap-2 text-2xl font-bold text-sky-300;
+
+	> span {
+		@apply text-amber-500;
+	}
+}

@@ -1,10 +1,11 @@
+import ConvertModule from '@/modules/convert-box/ConvertModule'
 import Layout from '@/modules/layout/Layout'
 import { FC } from 'react'
 
 const Home: FC = () => {
 	return (
 		<Layout title='Home'>
-			<h1>Home</h1>
+			<ConvertModule />
 		</Layout>
 	)
 }

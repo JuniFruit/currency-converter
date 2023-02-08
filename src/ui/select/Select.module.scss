@@ -1,0 +1,13 @@
+.select_wrapper {
+	@apply appearance-none rounded-md border-2 border-transparent bg-gray-700 px-2 py-1 outline-none;
+	&:focus {
+		@apply border-gray-600;
+	}
+}
+
+.option_wrapper {
+	@apply appearance-none rounded-md bg-gray-400 px-2 py-1 outline-none;
+	&:active {
+		@apply bg-sky-300;
+	}
+}

@@ -1,0 +1,14 @@
+.input {
+	@apply relative block;
+
+	> input {
+		@apply block w-full appearance-none rounded-md bg-gray-600 py-3 px-2 font-semibold text-white outline-none transition-shadow;
+
+		&:focus {
+			@apply shadow outline-none;
+		}
+
+		&::placeholder {
+		}
+	}
+}

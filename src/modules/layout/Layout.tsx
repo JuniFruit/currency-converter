@@ -1,3 +1,4 @@
+import Header from '@/components/header/Header'
 import Meta from '@/components/meta/Meta'
 import { IMeta } from '@/components/meta/meta.interface'
 import { FC, PropsWithChildren } from 'react'
@@ -9,6 +10,7 @@ const Layout: FC<PropsWithChildren<ILayout>> = ({ children, ...rest }) => {
 	return (
 		<>
 			<Meta {...{ ...rest }} />
+			<Header />
 			<div className={styles.page_wrapper}>
 				<main>{children}</main>
 			</div>
