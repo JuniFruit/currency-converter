@@ -12,7 +12,7 @@ const Meta: FC<PropsWithChildren<IMeta>> = ({
 }) => {
 	const { asPath } = useRouter()
 
-	const currentUrl = `${process.env.REACT_APP_URL}${asPath}`
+	const currentUrl = `${process.env.NEXT_PUBLIC_APP_URL}${asPath}`
 
 	return (
 		<>

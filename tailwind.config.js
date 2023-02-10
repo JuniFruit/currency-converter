@@ -5,11 +5,37 @@ module.exports = {
 	content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
+			colors: {
+				complimentary: {
+					200: 'var(--complimentary-200)',
+					500: 'var(--complimentary-500)',
+					600: 'var(--complimentary-600)',
+					700: 'var(--complimentary-700)',
+					800: 'var(--complimentary-800)',
+					900: 'var(--complimentary-900)'
+				},
+				secondary: {
+					200: 'var(--secondary-200)',
+					500: 'var(--secondary-500)',
+					600: 'var(--secondary-600)',
+					700: 'var(--secondary-700)',
+					800: 'var(--secondary-800)',
+					900: 'var(--secondary-900)'
+				},
+				main: {
+					200: 'var(--main-200)',
+					500: 'var(--main-500)',
+					600: 'var(--main-600)',
+					700: 'var(--main-700)',
+					800: 'var(--main-800)',
+					900: 'var(--main-900)'
+				}
+			},
 			boxShadow: {
 				DEFAULT:
-					'0px 3px 6px 0px rgb(1, 4, 9),0px 1px 1px 0px rgba(0, 0, 0, 0.1)',
-				md: '0px 3px 6px 0px rgb(1, 4, 9), 0px 1px 1px 0px rgba(0, 0, 0, 0.3)',
-				lg: '0px 3px 6px 0px rgb(1, 4, 9), 0px 1px 1px 0px rgba(0, 0, 0, 0.5)'
+					'0px 3px 6px 0px rgb(1, 4, 9),0px 1px 1px 5px rgba(0, 0, 0, 0.2)',
+				md: '0px 3px 6px 0px rgb(1, 4, 9), 0px 1px 1px 5px rgba(0, 0, 0, 0.3)',
+				lg: '0px 3px 6px 0px rgb(1, 4, 9), 0px 1px 1px 5px rgba(0, 0, 0, 0.5)'
 			},
 			keyframes: {
 				fadeIn: {

@@ -1,0 +1,7 @@
+.item_wrapper {
+	@apply my-3 font-semibold text-white;
+
+	> span {
+		@apply text-complimentary-500;
+	}
+}

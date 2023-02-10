@@ -1,12 +1,25 @@
 .main {
-	@apply rounded-md bg-sky-300  p-2 text-sm text-gray-800 transition-colors duration-150;
+	@apply rounded-md bg-complimentary-500 p-2  text-sm text-white opacity-80 transition-colors duration-150;
+	letter-spacing: 0.05rem;
 	@media (hover: hover) {
 		&:hover {
-			@apply bg-sky-400;
+			@apply opacity-100;
 		}
 	}
 
 	@screen md {
 		@apply rounded-md py-1.5 px-2 text-sm font-bold;
+	}
+}
+
+.icon {
+	@apply bg-transparent py-1 px-1.5 opacity-80 transition-all duration-150;
+
+	> svg {
+		@apply h-full w-full;
+	}
+
+	@media (hover: hover) {
+		@apply hover:opacity-100;
 	}
 }

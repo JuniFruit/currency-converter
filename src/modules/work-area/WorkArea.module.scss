@@ -1,0 +1,11 @@
+.area_container {
+	.button_wrapper {
+		> button {
+			@apply h-14 w-14 text-complimentary-200;
+		}
+	}
+
+	.boxes_wrapper {
+		@apply flex flex-wrap gap-2;
+	}
+}

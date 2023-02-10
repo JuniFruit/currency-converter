@@ -1,0 +1,16 @@
+.box_container {
+	@apply relative max-w-xs animate-enterFromBottom overflow-hidden rounded-xl bg-main-800;
+	box-shadow: 1px 1px 10px rgba(4, 4, 4, 0.5);
+
+	> button {
+		@apply pointer-events-none absolute top-0 right-0 h-12 w-12 overflow-hidden text-red-600 opacity-0;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			> button {
+				@apply pointer-events-auto opacity-80 hover:opacity-100;
+			}
+		}
+	}
+}
