@@ -1,16 +1,40 @@
 .box_container {
-	@apply relative max-w-xs animate-enterFromBottom overflow-hidden rounded-xl bg-main-800;
+	@apply relative max-w-xs  overflow-hidden rounded-xl bg-main-800 transition-all duration-200;
+
 	box-shadow: 1px 1px 10px rgba(4, 4, 4, 0.5);
 
-	> button {
-		@apply pointer-events-none absolute top-0 right-0 h-12 w-12 overflow-hidden text-red-600 opacity-0;
+	> button:first-child {
+		@apply absolute top-0 right-0 z-10 h-12 w-10 overflow-hidden text-red-600;
+	}
+
+	> button:nth-child(2) {
+		@apply absolute top-1.5 left-0 z-10 hidden w-10 cursor-grab text-main-900;
 	}
 
 	@media (hover: hover) {
 		&:hover {
-			> button {
+			> button:first-child {
 				@apply pointer-events-auto opacity-80 hover:opacity-100;
 			}
 		}
 	}
+
+	@screen md {
+		> button:first-child {
+			@apply pointer-events-none opacity-0;
+		}
+		> button:nth-child(2) {
+			@apply block;
+		}
+	}
+}
+
+.dragging {
+	@apply animate-bubling;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+.dragStart {
+	@apply opacity-50;
 }

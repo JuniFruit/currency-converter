@@ -94,6 +94,17 @@ module.exports = {
 						transform: 'translateX(0%)',
 						opacity: '1'
 					}
+				},
+				bubling: {
+					'0%': {
+						transform: 'rotateZ(1deg)'
+					},
+					'50%': {
+						transform: 'rotateZ(-1deg)'
+					},
+					'100%': {
+						transform: 'rotateZ(0deg)'
+					}
 				}
 			},
 			fontSize: {
@@ -117,7 +128,8 @@ module.exports = {
 				enterFromBottom: 'enterFromBottom .5s ease-in-out',
 				slideInLeft: 'slideInLeft .35s ease',
 				slideInRight: 'slideInRight .35s ease',
-				slideInTop: 'slideInTop .35s ease'
+				slideInTop: 'slideInTop .35s ease',
+				bubling: 'bubling .25s ease'
 			},
 			fontFamily: {
 				sans: ['Inter var', ...defaultTheme.fontFamily.sans]

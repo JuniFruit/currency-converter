@@ -11,11 +11,11 @@ const CurrencySelect: FC<ICurrencySelect> = ({
 	if (!data) return null
 	return (
 		<Select {...{ ...rest }}>
-			{data.map(item => (
+			{data.map((item, ind) => (
 				<Option
 					value={item.currency}
 					selected={defaultValue === item.currency}
-					key={item.currency}
+					key={ind + Math.random() * 100}
 				>
 					{item.currency}
 				</Option>

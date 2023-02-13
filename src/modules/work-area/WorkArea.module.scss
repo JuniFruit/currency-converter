@@ -1,7 +1,12 @@
 .area_container {
+	@apply h-full w-full;
 	.button_wrapper {
+		@apply flex w-full items-center justify-between;
 		> button {
 			@apply h-14 w-14 text-complimentary-200;
+		}
+		> button:last-child {
+			@apply text-red-500;
 		}
 	}
 

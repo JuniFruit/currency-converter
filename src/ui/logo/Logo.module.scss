@@ -1,5 +1,9 @@
 .wrapper {
-	@apply flex items-center gap-2 text-2xl font-bold text-white;
+	@apply flex items-center gap-2 text-2xl font-bold text-white transition-colors duration-200;
+
+	@media (hover: hover) {
+		@apply hover:text-complimentary-200;
+	}
 
 	> span {
 		@apply text-amber-500;

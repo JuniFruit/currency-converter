@@ -1,3 +1,4 @@
-export interface IConvertHeader  {
-    title: string;
+export interface IConvertHeader {
+	from: string
+	to: string
 }
