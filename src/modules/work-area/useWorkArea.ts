@@ -1,5 +1,6 @@
 import { ICurrencyItem } from '@/components/currency-select/CurrencySelect.interface'
 import { useCallback, useEffect, useState } from 'react'
+import { currencyApi } from './api/currency.api'
 import { useDragAndDrop } from './drag-n-drop/useDragNDrop'
 import { IDataItem } from './dummyData'
 
@@ -10,13 +11,18 @@ export const useWorkArea = () => {
 		{ currency: 'RUR' },
 		{ currency: 'YEN' }
 	]
+	// const { data: currencyList } = currencyApi.useGetCurrencyPairsQuery(null)
 	const defaultData: any = {
 		fromDefault: 'RUR',
 		toDefault: 'USD',
 		id: Math.random() * 100
 	}
 
-	const dragHandlers = useDragAndDrop<IDataItem>(boxes)
+	const handleDataChange = useCallback((newData: IDataItem[]) => {
+		setBoxes(newData)
+	}, [])
+
+	const dragHandlers = useDragAndDrop<IDataItem>(boxes, handleDataChange)
 
 	const handleOnCovert = useCallback(() => {}, [])
 
@@ -48,7 +54,7 @@ export const useWorkArea = () => {
 				return copy
 			})
 		},
-		[boxes.length]
+		[boxes]
 	)
 
 	const deleteAll = useCallback(() => {

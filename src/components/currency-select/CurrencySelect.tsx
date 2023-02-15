@@ -1,6 +1,6 @@
 import { Option } from '@/ui/select/Option'
 import { Select } from '@/ui/select/Select'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { ICurrencySelect } from './CurrencySelect.interface'
 
 const CurrencySelect: FC<ICurrencySelect> = ({
@@ -9,18 +9,21 @@ const CurrencySelect: FC<ICurrencySelect> = ({
 	...rest
 }) => {
 	if (!data) return null
+	const [selected, setSelected] = useState(defaultValue)
 	return (
-		<Select {...{ ...rest }}>
-			{data.map((item, ind) => (
-				<Option
-					value={item.currency}
-					selected={defaultValue === item.currency}
-					key={ind + Math.random() * 100}
-				>
-					{item.currency}
-				</Option>
-			))}
-		</Select>
+		<>
+			<Select>{selected}</Select>
+			<ul>
+				{data.map((item, ind) => (
+					<Option
+						value={item.currency}
+						description={'Currency'}
+						isSelected={selected === item.currency}
+						key={ind + Math.random() * 100}
+					/>
+				))}
+			</ul>
+		</>
 	)
 }
 

@@ -1,5 +1,9 @@
-import { OptionHTMLAttributes, SelectHTMLAttributes } from "react";
+import { OptionHTMLAttributes, SelectHTMLAttributes } from 'react'
 
-export interface ISelect extends SelectHTMLAttributes<HTMLSelectElement> {};
+export interface ISelect extends SelectHTMLAttributes<HTMLSelectElement> {}
 
-export interface IOption extends OptionHTMLAttributes<HTMLOptionElement> {};
+export interface IOption {
+	value: string
+	description?: string
+	isSelected?: boolean
+}

@@ -1,12 +1,15 @@
-import { useCallback, useEffect, useRef, useState, TouchEvent } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
 type IUseDragAndDropState = {
 	id: number
 }
 
-export function useDragAndDrop<T extends IUseDragAndDropState>(data: T[]) {
+export function useDragAndDrop<T extends IUseDragAndDropState>(
+	data: T[],
+	onDataChange: (data: T[]) => void
+) {
 	const [isDragging, setIsDragging] = useState(false)
-	const [dataList, setDataList] = useState<T[]>([])
+
 	const [dragItem, setDragItem] = useState<any>()
 	const prevId = useRef<number>(0)
 
@@ -14,10 +17,10 @@ export function useDragAndDrop<T extends IUseDragAndDropState>(data: T[]) {
 		(dragging: boolean, id: number) => {
 			setIsDragging(dragging)
 			if (!dragging) return
-			const item = dataList.find(item => item.id === id)
+			const item = data.find(item => item.id === id)
 			setDragItem(item)
 		},
-		[dataList]
+		[data]
 	)
 	const handleSwap = (idToSwap: number) => {
 		// prevent infinite swapping while dragging over
@@ -25,47 +28,42 @@ export function useDragAndDrop<T extends IUseDragAndDropState>(data: T[]) {
 	}
 
 	const _swapElements = (idToSwap: number) => {
-		const dragInd = dataList.findIndex(item => item === dragItem)
-		const indToSwap = dataList.findIndex(item => item?.id === idToSwap)
-		const elToSwap = dataList[indToSwap]
-		dataList[dragInd] = elToSwap
-		dataList[indToSwap] = dragItem
+		const copy = [...data]
+		const dragInd = data.findIndex(item => item === dragItem)
+		const indToSwap = data.findIndex(item => item?.id === idToSwap)
+		const elToSwap = data[indToSwap]
+		copy[dragInd] = elToSwap
+		copy[indToSwap] = dragItem
+		onDataChange(copy)
 		prevId.current = idToSwap
 	}
 
-	const handleTouchStart = (e: TouchEvent<HTMLDivElement>, id: number) => {
-		// if (!draggable || !containerRef.current) return
-		const event = new DragEvent('dragstart')
-		e.target.addEventListener('dragstart', ev => {
-			handleDragging(true, id)
-			// setDragStart(true)
-		})
-		e.target.addEventListener('dragend', ev => {
-			e.preventDefault()
-			handleDragging(false, 0)
-		})
-		e.target.dispatchEvent(event)
-	}
+	// const handleTouchStart = (e: TouchEvent<HTMLDivElement>, id: number) => {
+	// 	// if (!draggable || !containerRef.current) return
+	// 	const event = new DragEvent('dragstart')
+	// 	e.target.addEventListener('dragstart', ev => {
+	// 		handleDragging(true, id)
+	// 		// setDragStart(true)
+	// 	})
+	// 	e.target.addEventListener('dragend', ev => {
+	// 		e.preventDefault()
+	// 		handleDragging(false, 0)
+	// 	})
+	// 	e.target.dispatchEvent(event)
+	// }
 
-	const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-		const { targetTouches } = e
-		// onDragOver(id)
-	}
-	const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
-		const event = new DragEvent('dragend')
-		e.target.dispatchEvent(event)
-	}
-
-	useEffect(() => {
-		setDataList(data)
-	}, [data])
+	// const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+	// 	const { targetTouches } = e
+	// 	// onDragOver(id)
+	// }
+	// const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+	// 	const event = new DragEvent('dragend')
+	// 	e.target.dispatchEvent(event)
+	// }
 
 	return {
 		isDragging,
 		handleDragging,
-		handleSwap,
-		handleTouchEnd,
-		handleTouchStart,
-		handleTouchMove
+		handleSwap
 	}
 }

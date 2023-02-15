@@ -32,7 +32,7 @@ const WorkArea: FC = () => {
 						onStartDragging={dragNdrop.handleDragging}
 						isDragging={dragNdrop.isDragging}
 						onDragOver={dragNdrop.handleSwap}
-						selectOptions={{ data: convertBoxes.currencyList }}
+						selectOptions={{ data: convertBoxes.currencyList || [] }}
 						onConvert={convertBoxes.handleOnCovert}
 						onClose={convertBoxes.deleteBox}
 						onUpdate={convertBoxes.updateBox}

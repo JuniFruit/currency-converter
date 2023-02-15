@@ -1,14 +1,14 @@
 import { FC, PropsWithChildren } from 'react'
-import { ISelect } from './Select.interface'
+import { IButton } from '../buttons/Button.interface'
 import styles from './Select.module.scss'
 
-export const Select: FC<PropsWithChildren<ISelect>> = ({
+export const Select: FC<PropsWithChildren<IButton>> = ({
 	children,
 	...rest
 }) => {
 	return (
-		<select {...{ ...rest }} className={styles.select_wrapper}>
+		<button {...{ ...rest }} className={styles.select_wrapper}>
 			{children}
-		</select>
+		</button>
 	)
 }

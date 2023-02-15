@@ -1,2 +1,1 @@
-export const CURRENCY_BASE = `https://currate.ru/api/`
-export const CURRENCY_KEY = `key=${process.env.NEXT_PUBLIC_CURRENCY_KEY}`
+export const CURRENCY_BASE = `https://api.apilayer.com/exchangerates_data`
