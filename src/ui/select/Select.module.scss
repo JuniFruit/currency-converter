@@ -1,13 +1,57 @@
 .select_wrapper {
-	@apply appearance-none rounded-md border-2 border-transparent bg-gray-700 px-2 py-1 outline-none;
+	@apply flex appearance-none items-center rounded-md border-2 border-transparent bg-gray-700 px-2 py-1 outline-none;
 	&:focus {
 		@apply border-gray-600;
+	}
+	.caret_wrapper {
+		@apply flex flex-col justify-center pl-4;
+		> svg {
+			@apply h-2 w-2;
+		}
 	}
 }
 
 .option_wrapper {
-	@apply appearance-none rounded-md bg-gray-400 px-2 py-1 outline-none;
-	&:active {
-		@apply bg-sky-300;
+	@apply flex w-full appearance-none items-center gap-2 bg-transparent px-2 py-1 text-main-500 outline-none;
+
+	@media (hover: hover) {
+		@apply cursor-pointer hover:bg-complimentary-500  hover:text-white;
+		&:hover {
+			.checkmark {
+				@apply text-white;
+			}
+		}
+	}
+	&:focus-visible {
+		@apply bg-complimentary-500 text-white;
+		.checkmark {
+			@apply text-white;
+		}
+	}
+
+	.checkmark {
+		@apply flex items-center text-complimentary-500 opacity-0;
+		> svg {
+			@apply h-full w-full;
+		}
+	}
+	.checkmark_selected {
+		@apply opacity-100;
+	}
+	.value_wrapper {
+		@apply flex flex-col;
+		p {
+			@apply text-tiny font-light;
+		}
+	}
+}
+
+.options_box {
+	@apply absolute left-0 z-20 w-max animate-enterFromBottom overflow-y-scroll rounded-lg bg-white py-1.5 shadow-sm;
+	top: calc(100% + 0.5rem);
+	max-height: 20rem;
+	scrollbar-width: 0px;
+	&::-webkit-scrollbar {
+		@apply w-0;
 	}
 }

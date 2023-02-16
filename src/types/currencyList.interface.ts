@@ -3,5 +3,19 @@ interface SymbolItem {
 }
 
 export interface ISymbolResponse {
-	symbols: SymbolItem[]
+	symbols: SymbolItem
+}
+
+export interface IConvertResult {
+	info: {
+		rate: number
+	}
+	query: IConvertQuery
+	result: number
+}
+
+export interface IConvertQuery {
+	amount: number
+	from: string
+	to: string
 }

@@ -1,6 +1,6 @@
 .box_container {
-	@apply relative max-w-xs  overflow-hidden rounded-xl bg-main-800 transition-all duration-200;
-
+	@apply relative max-w-xs  rounded-xl bg-main-800 transition-all duration-200;
+	min-width: 12rem;
 	box-shadow: 1px 1px 10px rgba(4, 4, 4, 0.5);
 
 	> button:first-child {

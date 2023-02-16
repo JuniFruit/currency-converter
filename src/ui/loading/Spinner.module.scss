@@ -1,0 +1,7 @@
+@import '../../../styles/mixins.utils.scss';
+
+.container {
+	@include on-circle-loading(11, 1.5);
+	> div {
+	}
+}

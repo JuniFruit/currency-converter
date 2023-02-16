@@ -13,4 +13,9 @@
 	.button_container {
 		@apply mx-auto mt-2;
 	}
+	.result_container {
+		> span {
+			@apply font-semibold text-complimentary-500;
+		}
+	}
 }

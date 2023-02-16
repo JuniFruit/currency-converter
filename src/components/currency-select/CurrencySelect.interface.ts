@@ -1,10 +1,12 @@
-import { ISelect } from "@/ui/select/Select.interface";
+import { ISelect } from '@/ui/select/Select.interface'
 
-export interface ICurrencySelect extends ISelect {
-    data: ICurrencyItem[];
-    defaultValue?: string;
+export interface ICurrencySelect {
+	data: ICurrencyItem[]
+	onSelect: (value: string) => void
+	defaultValue?: string
 }
 
 export interface ICurrencyItem {
-    currency: string;
+	currency: string
+	description?: string
 }

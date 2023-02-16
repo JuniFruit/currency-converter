@@ -10,7 +10,8 @@ export const currencyApi = api.injectEndpoints({
 			query: () => `${CURRENCY_BASE}/symbols`,
 			transformResponse: (response: ISymbolResponse) =>
 				transformResponseToList(response),
-			providesTags: ['Pairs']
+			providesTags: ['Pairs'],
+			keepUnusedDataFor: 3600 * 24 * 1000
 		})
 	})
 })

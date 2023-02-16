@@ -1,5 +1,5 @@
 .header_container {
-	@apply touch-none bg-complimentary-700 px-2 py-3;
+	@apply touch-none select-none rounded-t-xl bg-complimentary-700 px-2 py-3;
 
 	> h2 {
 		@apply text-center text-xl font-bold text-main-800;

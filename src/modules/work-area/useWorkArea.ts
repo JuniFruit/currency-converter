@@ -1,30 +1,28 @@
 import { ICurrencyItem } from '@/components/currency-select/CurrencySelect.interface'
+import { IBoxDataItem } from '@/types/box.interface'
 import { useCallback, useEffect, useState } from 'react'
 import { currencyApi } from './api/currency.api'
 import { useDragAndDrop } from './drag-n-drop/useDragNDrop'
-import { IDataItem } from './dummyData'
 
 export const useWorkArea = () => {
-	const [boxes, setBoxes] = useState<IDataItem[]>([])
+	const [boxes, setBoxes] = useState<IBoxDataItem[]>([])
 	const currencyList: ICurrencyItem[] = [
-		{ currency: 'USD' },
-		{ currency: 'RUR' },
+		{ currency: 'USD', description: 'US Dollar' },
+		{ currency: 'RUR', description: 'Russian rub' },
 		{ currency: 'YEN' }
 	]
 	// const { data: currencyList } = currencyApi.useGetCurrencyPairsQuery(null)
 	const defaultData: any = {
-		fromDefault: 'RUR',
-		toDefault: 'USD',
-		id: Math.random() * 100
+		fromDefault: 'USD',
+		toDefault: 'EUR',
+		id: Math.random() * 1000
 	}
 
-	const handleDataChange = useCallback((newData: IDataItem[]) => {
+	const handleDataChange = useCallback((newData: IBoxDataItem[]) => {
 		setBoxes(newData)
 	}, [])
 
-	const dragHandlers = useDragAndDrop<IDataItem>(boxes, handleDataChange)
-
-	const handleOnCovert = useCallback(() => {}, [])
+	const dragHandlers = useDragAndDrop<IBoxDataItem>(boxes, handleDataChange)
 
 	const addBox = useCallback(() => {
 		setBoxes(prev => [defaultData, ...prev])
@@ -43,7 +41,7 @@ export const useWorkArea = () => {
 	)
 
 	const updateBox = useCallback(
-		(item: IDataItem) => {
+		(item: IBoxDataItem) => {
 			const ind = boxes.findIndex(box => box.id === item.id)
 			setBoxes(prev => {
 				let copy = prev.slice()
@@ -80,7 +78,6 @@ export const useWorkArea = () => {
 			addBox,
 			boxes,
 			currencyList,
-			handleOnCovert,
 			deleteBox,
 			deleteAll,
 			updateBox

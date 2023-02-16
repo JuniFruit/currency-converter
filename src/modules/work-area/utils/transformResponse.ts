@@ -5,10 +5,10 @@ export const transformResponseToList = (
 	res: ISymbolResponse
 ): ICurrencyItem[] => {
 	const result = []
-	console.log(res)
 	for (let currency in res.symbols) {
 		result.push({
-			currency: currency
+			currency: currency,
+			description: (res.symbols as any)[currency]
 		})
 	}
 

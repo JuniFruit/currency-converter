@@ -1,7 +1,7 @@
 import CurrencySelect from '@/components/currency-select/CurrencySelect'
 import { Button } from '@/ui/buttons/main/Button'
 import Field from '@/ui/fields/main/Field'
-import { FC, ChangeEventHandler } from 'react'
+import { FC, FormEventHandler, useRef } from 'react'
 import { IConvertBody } from './ConvertBody.interface'
 import styles from './ConvertBody.module.scss'
 
@@ -10,41 +10,67 @@ const ConvertBody: FC<IConvertBody> = ({
 	toDefault,
 	selectOptions,
 	onSelect,
-	onConvert
+	onConvert,
+	result
 }) => {
-	const handleChangeFrom: ChangeEventHandler<HTMLSelectElement> = e => {
-		onSelect(e.target.value, 'from')
+	const amount = useRef<HTMLInputElement | null>(null)
+	const handleChangeFrom = (value: string) => {
+		onSelect(value, 'from')
 	}
-	const handleChangeTo: ChangeEventHandler<HTMLSelectElement> = e => {
-		onSelect(e.target.value, 'to')
+	const handleChangeTo = (value: string) => {
+		onSelect(value, 'to')
+	}
+
+	const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
+		e.preventDefault()
+		if (!amount.current) return
+		onConvert(amount.current.value)
 	}
 
 	return (
-		<div className={styles.body_container}>
+		<form className={styles.body_container} onSubmit={handleSubmit}>
 			<div className={styles.input_container}>
 				<h3>Enter amount: </h3>
-				<Field type='number' min={0} />
+				<Field
+					type='number'
+					min={0}
+					step='any'
+					name='amount'
+					required
+					aria-required={true}
+					ref={amount}
+				/>
 			</div>
 			<div className={styles.select_container}>
 				<span>from</span>
 				<CurrencySelect
-					onChange={handleChangeFrom}
-					{...{ ...selectOptions }}
+					onSelect={handleChangeFrom}
+					data={selectOptions.data}
 					defaultValue={fromDefault}
 					key={'from'}
 				/>
 				<span>to</span>
 				<CurrencySelect
-					onChange={handleChangeTo}
-					{...{ ...selectOptions }}
+					onSelect={handleChangeTo}
+					data={selectOptions.data}
 					defaultValue={toDefault}
 					key={'to'}
 				/>
 			</div>
-			<div className={styles.button_container}>
-				<Button onClick={() => onConvert()}>Convert</Button>
+			<div className={styles.result_container}>
+				{result ? (
+					<>
+						<p>rate: {result.info.rate.toFixed(2)}</p>
+						<span>result: {result.result.toFixed(2)}</span>
+					</>
+				) : null}
 			</div>
-		</div>
+			<div className={styles.button_container}>
+				<Button type='submit' role='button'>
+					Convert
+				</Button>
+			</div>
+		</form>
 	)
 }
 

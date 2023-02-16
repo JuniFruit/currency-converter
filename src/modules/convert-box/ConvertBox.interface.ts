@@ -1,12 +1,12 @@
-import { IDataItem } from '../work-area/dummyData'
+import { IBoxDataItem } from '@/types/box.interface'
 import { IConvertBody } from './body/ConvertBody.interface'
-// type IBox = IConvertBody & HTMLDivElement
 
-export interface IConvertBox extends Omit<IConvertBody, 'onSelect'> {
+export interface IConvertBox
+	extends Omit<IConvertBody, 'onSelect' | 'onConvert' | 'result'> {
 	id: number
 	onClose: (id: number) => void
 	isDragging: boolean
 	onStartDragging: (dragging: boolean, id: number) => void
 	onDragOver: (idToSwap: number) => void
-	onUpdate: (box: IDataItem) => void
+	onUpdate: (box: IBoxDataItem) => void
 }
