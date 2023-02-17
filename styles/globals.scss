@@ -54,6 +54,10 @@ html {
 
 body {
 	@apply bg-main-900;
+	background-image: url('../src/assets/images/bg_glow.png');
+	background-repeat: no-repeat;
+	background-size: fill;
+	background-position: 60% 200%;
 }
 
 a {

@@ -25,7 +25,15 @@ export const useConvertBox = ({
 		})
 	}
 
-	const [convert] = convertApi.useConvertMutation()
+	const handleSwap = () => {
+		onUpdate({
+			fromDefault: rest.toDefault,
+			toDefault: rest.fromDefault,
+			id: id
+		})
+	}
+
+	const [convert, { isLoading: isProcessing }] = convertApi.useConvertMutation()
 	const handleConvert = (amount: string) => {
 		convert({
 			amount: +amount,
@@ -55,14 +63,20 @@ export const useConvertBox = ({
 	}
 
 	return {
-		handleDragEnd,
-		handleDragOver,
-		handleDragStart,
-		handleUpdateBox,
-		handleConvert,
-		dragStart,
-		draggable,
-		convertResult,
-		setDraggable
+		handlers: {
+			handleDragEnd,
+			handleDragOver,
+			handleDragStart,
+			handleUpdateBox,
+			handleConvert,
+			handleSwap,
+			setDraggable,
+			convertResult
+		},
+		status: {
+			dragStart,
+			draggable,
+			isProcessing
+		}
 	}
 }

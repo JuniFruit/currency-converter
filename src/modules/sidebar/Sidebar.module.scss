@@ -1,5 +1,9 @@
 .wrapper {
-	@apply min-h-full w-56  flex-shrink-0 border-r border-main-700 py-2 px-3;
+	@apply hidden min-h-full  w-56 flex-shrink-0 border-r border-main-700 py-2 px-3;
 	/* box-shadow: 0 3px 7px rgba(255, 255, 255, 0.1) inset,
 		0 -4px 7px rgba(255, 255, 255, 0.1) inset; */
+
+	@screen md {
+		@apply block;
+	}
 }

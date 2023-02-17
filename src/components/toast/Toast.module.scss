@@ -1,0 +1,58 @@
+.message_body {
+	@apply fixed bottom-5 left-1/2 block animate-fadeIn overflow-hidden rounded-lg bg-main-700 shadow-sm duration-150;
+	z-index: 110;
+	transform: translateX(-50%);
+	min-height: 1.5rem;
+
+	@screen sm {
+		min-height: 2rem;
+	}
+
+	.message_wrapper {
+		@apply sticky flex justify-center gap-2 py-2 align-middle;
+
+		&:nth-child(n + 1) {
+			@apply mx-2 flex items-center justify-center;
+		}
+
+		.icon {
+			@apply flex h-10 w-10 items-center justify-center p-1.5  text-main-700;
+			> svg {
+				@apply h-full w-full;
+			}
+		}
+
+		.message {
+			@apply max-w-md break-words text-center text-white opacity-80;
+			font-size: 0.65rem;
+		}
+		> button {
+			@apply h-10 w-10 text-main-700;
+		}
+
+		@screen sm {
+			@apply gap-4 py-6;
+			.message {
+				font-size: 0.85rem;
+			}
+			&:nth-child(n + 1) {
+				@apply mx-3;
+			}
+		}
+	}
+}
+
+.success {
+	@apply bg-green-500;
+}
+
+.warning {
+	@apply bg-yellow-500;
+}
+
+.error {
+	@apply bg-red-500;
+}
+
+.progress_line {
+}

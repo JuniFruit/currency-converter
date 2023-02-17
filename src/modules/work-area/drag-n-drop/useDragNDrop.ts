@@ -38,29 +38,6 @@ export function useDragAndDrop<T extends IUseDragAndDropState>(
 		prevId.current = idToSwap
 	}
 
-	// const handleTouchStart = (e: TouchEvent<HTMLDivElement>, id: number) => {
-	// 	// if (!draggable || !containerRef.current) return
-	// 	const event = new DragEvent('dragstart')
-	// 	e.target.addEventListener('dragstart', ev => {
-	// 		handleDragging(true, id)
-	// 		// setDragStart(true)
-	// 	})
-	// 	e.target.addEventListener('dragend', ev => {
-	// 		e.preventDefault()
-	// 		handleDragging(false, 0)
-	// 	})
-	// 	e.target.dispatchEvent(event)
-	// }
-
-	// const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-	// 	const { targetTouches } = e
-	// 	// onDragOver(id)
-	// }
-	// const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
-	// 	const event = new DragEvent('dragend')
-	// 	e.target.dispatchEvent(event)
-	// }
-
 	return {
 		isDragging,
 		handleDragging,

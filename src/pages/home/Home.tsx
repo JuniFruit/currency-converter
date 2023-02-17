@@ -1,15 +1,21 @@
 import Layout from '@/modules/layout/Layout'
 import Sidebar from '@/modules/sidebar/Sidebar'
-import WorkArea from '@/modules/work-area/WorkArea'
-import { FC } from 'react'
+import { IWorkArea } from '@/modules/work-area/WorkArea.interface'
+import { FC, Suspense, lazy } from 'react'
 import styles from './Home.module.scss'
 
-const Home: FC = () => {
+const WorkArea = lazy(() => import('@/modules/work-area/WorkArea'))
+
+export interface IHome extends IWorkArea {}
+
+const Home: FC<IHome> = props => {
 	return (
-		<Layout title='Home'>
+		<Layout title='Currency Converter'>
 			<div className={styles.home_wrapper}>
 				<Sidebar />
-				<WorkArea />
+				<Suspense fallback={null}>
+					<WorkArea {...{ ...props }} />
+				</Suspense>
 			</div>
 		</Layout>
 	)

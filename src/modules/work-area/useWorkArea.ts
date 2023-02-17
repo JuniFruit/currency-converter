@@ -1,17 +1,11 @@
-import { ICurrencyItem } from '@/components/currency-select/CurrencySelect.interface'
 import { IBoxDataItem } from '@/types/box.interface'
 import { useCallback, useEffect, useState } from 'react'
-import { currencyApi } from './api/currency.api'
 import { useDragAndDrop } from './drag-n-drop/useDragNDrop'
 
 export const useWorkArea = () => {
+	const maxBoxes = 10
 	const [boxes, setBoxes] = useState<IBoxDataItem[]>([])
-	const currencyList: ICurrencyItem[] = [
-		{ currency: 'USD', description: 'US Dollar' },
-		{ currency: 'RUR', description: 'Russian rub' },
-		{ currency: 'YEN' }
-	]
-	// const { data: currencyList } = currencyApi.useGetCurrencyPairsQuery(null)
+
 	const defaultData: any = {
 		fromDefault: 'USD',
 		toDefault: 'EUR',
@@ -25,6 +19,7 @@ export const useWorkArea = () => {
 	const dragHandlers = useDragAndDrop<IBoxDataItem>(boxes, handleDataChange)
 
 	const addBox = useCallback(() => {
+		if (boxes.length >= maxBoxes) return
 		setBoxes(prev => [defaultData, ...prev])
 	}, [boxes.length])
 
@@ -77,7 +72,6 @@ export const useWorkArea = () => {
 		convertBoxes: {
 			addBox,
 			boxes,
-			currencyList,
 			deleteBox,
 			deleteAll,
 			updateBox

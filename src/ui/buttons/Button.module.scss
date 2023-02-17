@@ -1,6 +1,10 @@
 .main {
-	@apply rounded-md bg-complimentary-500 p-2  text-sm text-white opacity-80 transition-colors duration-150;
+	@apply relative rounded-md bg-complimentary-500  p-2 text-sm text-white opacity-80 transition-colors duration-150;
 	letter-spacing: 0.05rem;
+	> div:last-child {
+		@apply pointer-events-none absolute opacity-0;
+	}
+
 	@media (hover: hover) {
 		&:hover {
 			@apply opacity-100;
@@ -9,6 +13,16 @@
 
 	@screen md {
 		@apply rounded-md py-1.5 px-2 text-sm font-bold;
+	}
+}
+
+.loading {
+	@apply pointer-events-none;
+	> div:first-child {
+		@apply opacity-0;
+	}
+	> div:last-child {
+		@apply opacity-100;
 	}
 }
 

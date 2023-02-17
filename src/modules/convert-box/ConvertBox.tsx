@@ -8,40 +8,32 @@ import ConvertHeader from './header/ConvertHeader'
 import { useConvertBox } from './useConvertBox'
 
 const ConvertBox: FC<IConvertBox> = props => {
-	const {
-		handleDragEnd,
-		handleDragOver,
-		handleDragStart,
-		handleUpdateBox,
-		setDraggable,
-		handleConvert,
-		dragStart,
-		draggable,
-		convertResult
-	} = useConvertBox(props)
+	const { handlers, status } = useConvertBox(props)
 
 	return (
 		<div
 			className={`${styles.box_container} ${
 				props.isDragging ? styles.dragging : ''
-			} ${dragStart ? styles.dragStart : ''} draggable`}
-			draggable={draggable}
-			onDragStart={handleDragStart}
-			onDragEnd={handleDragEnd}
-			onDragOver={handleDragOver}
+			} ${status.dragStart ? styles.dragStart : ''} draggable`}
+			draggable={status.draggable}
+			onDragStart={handlers.handleDragStart}
+			onDragEnd={handlers.handleDragEnd}
+			onDragOver={handlers.handleDragOver}
 		>
 			<IconBtn onClick={() => props.onClose(props.id)}>
 				<IoBackspaceOutline />
 			</IconBtn>
-			<IconBtn onMouseDown={() => setDraggable(true)}>
+			<IconBtn onMouseDown={() => handlers.setDraggable(true)}>
 				<IoReorderThreeOutline />
 			</IconBtn>
 			<ConvertHeader from={props.fromDefault} to={props.toDefault} />
 			<ConvertBody
 				{...{ ...props }}
-				onSelect={handleUpdateBox}
-				onConvert={handleConvert}
-				result={convertResult}
+				onSwap={handlers.handleSwap}
+				onSelect={handlers.handleUpdateBox}
+				onConvert={handlers.handleConvert}
+				result={handlers.convertResult}
+				isProcessing={status.isProcessing}
 			/>
 		</div>
 	)

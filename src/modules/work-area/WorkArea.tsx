@@ -1,12 +1,14 @@
 import { IconBtn } from '@/ui/buttons/icon/IconBtn'
 import { Spinner } from '@/ui/loading/Spinner'
-import { FC } from 'react'
+import { FC, lazy, Suspense } from 'react'
 import { IoAddCircleSharp, IoTrashOutline } from 'react-icons/io5'
-import ConvertBox from '../convert-box/ConvertBox'
 import { useWorkArea } from './useWorkArea'
+import { IWorkArea } from './WorkArea.interface'
 import styles from './WorkArea.module.scss'
 
-const WorkArea: FC = () => {
+const ConvertBox = lazy(() => import('../convert-box/ConvertBox'))
+
+const WorkArea: FC<IWorkArea> = ({ currencyList }) => {
 	const { convertBoxes, dragNdrop } = useWorkArea()
 
 	return (
@@ -27,20 +29,21 @@ const WorkArea: FC = () => {
 					dragNdrop.handleDragging(false, 0)
 				}}
 			>
-				{convertBoxes.boxes.map(box => (
-					<ConvertBox
-						{...{ ...box }}
-						onStartDragging={dragNdrop.handleDragging}
-						isDragging={dragNdrop.isDragging}
-						onDragOver={dragNdrop.handleSwap}
-						selectOptions={{ data: convertBoxes.currencyList || [] }}
-						onClose={convertBoxes.deleteBox}
-						onUpdate={convertBoxes.updateBox}
-						key={box.id}
-					/>
-				))}
+				<Suspense fallback={<Spinner />}>
+					{convertBoxes.boxes.map(box => (
+						<ConvertBox
+							{...{ ...box }}
+							onStartDragging={dragNdrop.handleDragging}
+							isDragging={dragNdrop.isDragging}
+							onDragOver={dragNdrop.handleSwap}
+							selectOptions={{ data: currencyList || [] }}
+							onClose={convertBoxes.deleteBox}
+							onUpdate={convertBoxes.updateBox}
+							key={box.id}
+						/>
+					))}
+				</Suspense>
 			</div>
-			<Spinner />
 		</section>
 	)
 }

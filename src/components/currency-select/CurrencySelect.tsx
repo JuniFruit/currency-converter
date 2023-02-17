@@ -2,7 +2,7 @@ import { useClickOutside } from '@/hooks/useClickOutside'
 import { Option } from '@/ui/select/Option'
 import { OptionList } from '@/ui/select/OptionList'
 import { Select } from '@/ui/select/Select'
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { ICurrencySelect } from './CurrencySelect.interface'
 
 const CurrencySelect: FC<ICurrencySelect> = ({
@@ -19,6 +19,10 @@ const CurrencySelect: FC<ICurrencySelect> = ({
 		setIsShow(false)
 		onSelect(value)
 	}
+
+	useEffect(() => {
+		setSelected(defaultValue)
+	}, [defaultValue])
 
 	return (
 		<div className='relative' ref={ref}>

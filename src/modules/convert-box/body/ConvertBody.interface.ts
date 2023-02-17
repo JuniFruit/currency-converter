@@ -8,4 +8,6 @@ export interface IConvertBody {
 	onConvert: (amount: string) => void
 	onSelect: (val: string, select: 'from' | 'to') => void
 	result: IConvertResult | null
+	onSwap: () => void
+	isProcessing: boolean
 }

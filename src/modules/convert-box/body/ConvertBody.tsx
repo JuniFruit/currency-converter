@@ -1,7 +1,9 @@
 import CurrencySelect from '@/components/currency-select/CurrencySelect'
+import { IconBtn } from '@/ui/buttons/icon/IconBtn'
 import { Button } from '@/ui/buttons/main/Button'
 import Field from '@/ui/fields/main/Field'
 import { FC, FormEventHandler, useRef } from 'react'
+import { IoRepeat } from 'react-icons/io5'
 import { IConvertBody } from './ConvertBody.interface'
 import styles from './ConvertBody.module.scss'
 
@@ -11,6 +13,8 @@ const ConvertBody: FC<IConvertBody> = ({
 	selectOptions,
 	onSelect,
 	onConvert,
+	onSwap,
+	isProcessing,
 	result
 }) => {
 	const amount = useRef<HTMLInputElement | null>(null)
@@ -20,7 +24,6 @@ const ConvertBody: FC<IConvertBody> = ({
 	const handleChangeTo = (value: string) => {
 		onSelect(value, 'to')
 	}
-
 	const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
 		e.preventDefault()
 		if (!amount.current) return
@@ -42,14 +45,15 @@ const ConvertBody: FC<IConvertBody> = ({
 				/>
 			</div>
 			<div className={styles.select_container}>
-				<span>from</span>
 				<CurrencySelect
 					onSelect={handleChangeFrom}
 					data={selectOptions.data}
 					defaultValue={fromDefault}
 					key={'from'}
 				/>
-				<span>to</span>
+				<IconBtn type='button' onClick={() => onSwap()}>
+					<IoRepeat />
+				</IconBtn>
 				<CurrencySelect
 					onSelect={handleChangeTo}
 					data={selectOptions.data}
@@ -66,7 +70,7 @@ const ConvertBody: FC<IConvertBody> = ({
 				) : null}
 			</div>
 			<div className={styles.button_container}>
-				<Button type='submit' role='button'>
+				<Button type='submit' role='button' isLoading={isProcessing}>
 					Convert
 				</Button>
 			</div>
