@@ -64,8 +64,8 @@ const ConvertBody: FC<IConvertBody> = ({
 			<div className={styles.result_container}>
 				{result ? (
 					<>
-						<p>rate: {result.info.rate.toFixed(2)}</p>
-						<span>result: {result.result.toFixed(2)}</span>
+						<p>rate: {result.info.rate.toFixed(5)}</p>
+						<span>result: {result.result.toFixed(4)}</span>
 					</>
 				) : null}
 			</div>
