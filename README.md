@@ -14,6 +14,6 @@ Playground next js app with drag and drop feature and real time currency convert
 
 - React JS
 - TypeScript
-- Vanilla CSS
+- Tailwind CSS
 - Next JS
 - RTK Query
