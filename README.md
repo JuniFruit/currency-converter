@@ -1,6 +1,6 @@
 # [**Drag and Drop without libraries and NextJS playground 👆!**](https://currency-converternext.netlify.app/)
 
-Playground next js app with drag and drop feature and real time currency converter api
+Playground next js app with drag and drop feature and real time currency converter api.
 
 ## **Features ⚙️**
 
@@ -17,3 +17,4 @@ Playground next js app with drag and drop feature and real time currency convert
 - Tailwind CSS
 - Next JS
 - RTK Query
+s
